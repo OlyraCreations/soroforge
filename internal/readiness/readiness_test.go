@@ -3,6 +3,7 @@ package readiness
 import (
 	"context"
 	"errors"
+	"fmt"
 	"sync"
 	"testing"
 	"time"
@@ -234,6 +235,14 @@ func TestNewRequiresDependencies(t *testing.T) {
 		_, err := New(opts)
 		assert.ErrorContains(t, err, "client factory is required")
 	})
+}
+
+func ExampleRPCName() {
+	fmt.Println(RPCName("testnet"))
+	fmt.Println(RPCName("mainnet"))
+	// Output:
+	// rpc:testnet
+	// rpc:mainnet
 }
 
 func dependenciesByName(status Status) map[string]Dependency {
